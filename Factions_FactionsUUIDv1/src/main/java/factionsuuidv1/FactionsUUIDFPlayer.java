@@ -38,7 +38,7 @@ public class FactionsUUIDFPlayer extends AbstractFPlayer<FPlayer> {
     @NotNull
     @Override
     public UUID getUniqueId() {
-        return fPlayer.getUniqueId();
+        return fPlayer.uniqueId();
     }
 
     /**
@@ -49,7 +49,7 @@ public class FactionsUUIDFPlayer extends AbstractFPlayer<FPlayer> {
     @NotNull
     @Override
     public String getName() {
-        return fPlayer.getName();
+        return fPlayer.name();
     }
 
     /**
@@ -64,7 +64,7 @@ public class FactionsUUIDFPlayer extends AbstractFPlayer<FPlayer> {
     @Nullable
     @Override
     public Faction getFaction() {
-        return new FactionsUUIDFaction(fPlayer.getFaction());
+        return new FactionsUUIDFaction(fPlayer.faction());
     }
 
     /**
@@ -86,7 +86,7 @@ public class FactionsUUIDFPlayer extends AbstractFPlayer<FPlayer> {
     @NotNull
     @Override
     public OfflinePlayer getOfflinePlayer() {
-        return fPlayer.getOfflinePlayer();
+        return fPlayer.asOfflinePlayer();
     }
 
     /**
@@ -101,7 +101,7 @@ public class FactionsUUIDFPlayer extends AbstractFPlayer<FPlayer> {
     @Nullable
     @Override
     public Player getPlayer() {
-        return fPlayer.getPlayer();
+        return fPlayer.asPlayer();
     }
 
     /**
@@ -121,7 +121,7 @@ public class FactionsUUIDFPlayer extends AbstractFPlayer<FPlayer> {
      */
     @Override
     public double getPower() {
-        return fPlayer.getPower();
+        return fPlayer.power();
     }
 
     /**
@@ -131,7 +131,7 @@ public class FactionsUUIDFPlayer extends AbstractFPlayer<FPlayer> {
      */
     @Override
     public void setPower(double power) {
-        fPlayer.alterPower(Math.abs(fPlayer.getPower() - power));
+        fPlayer.power(power);
     }
 
     /**
@@ -142,7 +142,7 @@ public class FactionsUUIDFPlayer extends AbstractFPlayer<FPlayer> {
     @Nullable
     @Override
     public String getTitle() {
-        return fPlayer.getTitle();
+        return fPlayer.title();
     }
 
     /**
@@ -152,7 +152,7 @@ public class FactionsUUIDFPlayer extends AbstractFPlayer<FPlayer> {
      */
     @Override
     public void setTitle(@NotNull String title) {
-        fPlayer.setTitle(Bukkit.getConsoleSender(), title);
+        fPlayer.title(title);
     }
 
     /**
@@ -163,7 +163,7 @@ public class FactionsUUIDFPlayer extends AbstractFPlayer<FPlayer> {
     @NotNull
     @Override
     public Role getRole() {
-        return Role.getRole(fPlayer.getRole().name());
+        return Role.getRole(fPlayer.role().name());
     }
 
 }

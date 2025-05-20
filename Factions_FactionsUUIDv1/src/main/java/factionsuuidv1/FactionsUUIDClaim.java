@@ -34,7 +34,7 @@ public class FactionsUUIDClaim extends AbstractClaim<FLocation> {
     @NotNull
     @Override
     public Chunk getChunk() {
-        return claim.getChunk();
+        return claim.chunk();
     }
 
     /**
@@ -68,7 +68,7 @@ public class FactionsUUIDClaim extends AbstractClaim<FLocation> {
     @Nullable
     @Override
     public Faction getFaction() {
-        return new FactionsUUIDFaction(Board.getInstance().getFactionAt(claim));
+        return new FactionsUUIDFaction(Board.board().factionAt(claim));
     }
 
     /**

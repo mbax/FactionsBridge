@@ -31,7 +31,7 @@ public class FactionsUUIDAPI implements FactionsAPI {
     @NotNull
     @Override
     public List<Faction> getFactions() {
-        return Factions.getInstance().getAllFactions().stream().map(FactionsUUIDFaction::new)
+        return Factions.factions().all().stream().map(FactionsUUIDFaction::new)
                 .collect(Collectors.toList());
     }
 
@@ -69,7 +69,7 @@ public class FactionsUUIDAPI implements FactionsAPI {
     @Nullable
     @Override
     public Faction getFactionByTag(@NotNull String tag) {
-        dev.kitteh.factions.Faction fac = Factions.getInstance().getByTag(tag);
+        dev.kitteh.factions.Faction fac = Factions.factions().get(tag);
         return fac == null ? null : new FactionsUUIDFaction(fac);
     }
 
@@ -85,7 +85,7 @@ public class FactionsUUIDAPI implements FactionsAPI {
     @NotNull
     @Override
     public FPlayer getFPlayer(@NotNull OfflinePlayer player) {
-        return new FactionsUUIDFPlayer(FPlayers.getInstance().getByPlayer(player));
+        return new FactionsUUIDFPlayer(FPlayers.fPlayers().get(player));
     }
 
     /**
@@ -96,7 +96,7 @@ public class FactionsUUIDAPI implements FactionsAPI {
     @NotNull
     @Override
     public Faction getWarZone() {
-        return new FactionsUUIDFaction(Factions.getInstance().getWarZone());
+        return new FactionsUUIDFaction(Factions.factions().warZone());
     }
 
     /**
@@ -107,7 +107,7 @@ public class FactionsUUIDAPI implements FactionsAPI {
     @NotNull
     @Override
     public Faction getSafeZone() {
-        return new FactionsUUIDFaction(Factions.getInstance().getSafeZone());
+        return new FactionsUUIDFaction(Factions.factions().safeZone());
     }
 
     /**
@@ -118,7 +118,7 @@ public class FactionsUUIDAPI implements FactionsAPI {
     @NotNull
     @Override
     public Faction getWilderness() {
-        return new FactionsUUIDFaction(Factions.getInstance().getWilderness());
+        return new FactionsUUIDFaction(Factions.factions().wilderness());
     }
 
     /**
@@ -131,8 +131,8 @@ public class FactionsUUIDAPI implements FactionsAPI {
     @NotNull
     @Override
     public Faction createFaction(@NotNull String name) throws IllegalStateException {
-        if (Factions.getInstance().getByTag(name) != null) throw new IllegalStateException("Faction already exists.");
-        return new FactionsUUIDFaction(Factions.getInstance().createFaction(name));
+        if (Factions.factions().get(name) != null) throw new IllegalStateException("Faction already exists.");
+        return new FactionsUUIDFaction(Factions.factions().create(name));
     }
 
     /**
@@ -147,7 +147,7 @@ public class FactionsUUIDAPI implements FactionsAPI {
         if (fac == null) {
             throw new IllegalStateException("Invalid faction id.");
         }
-        Factions.getInstance().removeFaction(fac);
+        Factions.factions().remove(fac);
     }
 
     /**
@@ -164,7 +164,7 @@ public class FactionsUUIDAPI implements FactionsAPI {
 
     private @Nullable dev.kitteh.factions.Faction getFactionInternalById(String id) {
         try {
-            return Factions.getInstance().getFactionById(Integer.parseInt(id));
+            return Factions.factions().get(Integer.parseInt(id));
         } catch (NumberFormatException e) {
             throw new IllegalStateException("Invalid faction id.");
         }

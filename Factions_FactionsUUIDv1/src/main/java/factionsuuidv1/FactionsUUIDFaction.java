@@ -47,7 +47,7 @@ public class FactionsUUIDFaction extends AbstractFaction<Faction> {
     @NotNull
     @Override
     public String getId() {
-        return String.valueOf(faction.getId());
+        return String.valueOf(faction.id());
     }
 
     /**
@@ -59,7 +59,7 @@ public class FactionsUUIDFaction extends AbstractFaction<Faction> {
     @NotNull
     @Override
     public String getName() {
-        return faction.getTag();
+        return faction.tag();
     }
 
     /**
@@ -73,7 +73,8 @@ public class FactionsUUIDFaction extends AbstractFaction<Faction> {
     @Nullable
     @Override
     public FPlayer getLeader() {
-        return faction.getFPlayerAdmin() != null  ? new FactionsUUIDFPlayer(faction.getFPlayerAdmin()) : null;
+        dev.kitteh.factions.FPlayer fp = faction.admin();
+        return fp == null ? null : new FactionsUUIDFPlayer(fp);
     }
 
     /**
@@ -84,7 +85,7 @@ public class FactionsUUIDFaction extends AbstractFaction<Faction> {
     @NotNull
     @Override
     public List<Claim> getAllClaims() {
-        return faction.getAllClaims().stream().map(FactionsUUIDClaim::new).collect(Collectors.toList());
+        return faction.claims().stream().map(FactionsUUIDClaim::new).collect(Collectors.toList());
     }
 
     /**
@@ -95,7 +96,7 @@ public class FactionsUUIDFaction extends AbstractFaction<Faction> {
     @NotNull
     @Override
     public List<FPlayer> getMembers() {
-        return faction.getFPlayers().stream().map(FactionsUUIDFPlayer::new).collect(Collectors.toList());
+        return faction.members().stream().map(FactionsUUIDFPlayer::new).collect(Collectors.toList());
     }
 
     /**
@@ -105,7 +106,7 @@ public class FactionsUUIDFaction extends AbstractFaction<Faction> {
      */
     @Override
     public void setHome(@NotNull Location location) {
-        faction.setHome(location);
+        faction.home(location);
     }
 
     /**
@@ -116,7 +117,7 @@ public class FactionsUUIDFaction extends AbstractFaction<Faction> {
     @Nullable
     @Override
     public Location getHome() {
-        return faction.getHome();
+        return faction.home();
     }
 
     /**
@@ -171,7 +172,7 @@ public class FactionsUUIDFaction extends AbstractFaction<Faction> {
      */
     @Override
     public boolean isPeaceful() {
-        return faction.isPeaceful();
+        return faction.peaceful();
     }
 
     /**
@@ -181,7 +182,7 @@ public class FactionsUUIDFaction extends AbstractFaction<Faction> {
      */
     @Override
     public double getPower() {
-        return faction.getPower();
+        return faction.power();
     }
 
     /**
@@ -260,7 +261,7 @@ public class FactionsUUIDFaction extends AbstractFaction<Faction> {
     @Nullable
     @Override
     public Location getWarp(@NotNull String name) {
-        LazyLocation location = faction.getWarp(name);
+        LazyLocation location = faction.warp(name);
         return location == null ? null : location.getLocation();
     }
 
@@ -272,7 +273,7 @@ public class FactionsUUIDFaction extends AbstractFaction<Faction> {
      */
     @Override
     public void createWarp(@NotNull String name, @NotNull Location location) {
-        faction.setWarp(name, new LazyLocation(location));
+        faction.createWarp(name, new LazyLocation(location));
     }
 
     /**
@@ -287,7 +288,7 @@ public class FactionsUUIDFaction extends AbstractFaction<Faction> {
     @Override
     public HashMap<String, Location> getWarps() {
         HashMap<String, Location> map = new HashMap<>();
-        for (String s : faction.getWarps().keySet()) {
+        for (String s : faction.warps().keySet()) {
             Location loc = getWarp(s);
             if (loc == null) continue;
             map.put(s, loc);
@@ -358,7 +359,7 @@ public class FactionsUUIDFaction extends AbstractFaction<Faction> {
     @NotNull
     @Override
     public Relationship getRelationshipTo(@NotNull AbstractFaction<?> faction) {
-        return getRelationship(this.faction.getRelationTo((Participator) faction.getFaction()).name());
+        return getRelationship(this.faction.relationTo((Participator) faction.getFaction()).name());
     }
 
 }

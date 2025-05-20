@@ -27,8 +27,8 @@
 
         <!-- Factions UUID -->
         <dependency>
-            <groupId>dev.kitteh.tmpfactions</groupId>
-            <artifactId>factions</artifactId>
+            <groupId>dev.kitteh</groupId>
+            <artifactId>factionsuuid</artifactId>
             <version>1.0.0-SNAPSHOT</version>
             <scope>provided</scope>
         </dependency>
