@@ -262,7 +262,7 @@ public class FactionsUUIDFaction extends AbstractFaction<Faction> {
     @Override
     public Location getWarp(@NotNull String name) {
         LazyLocation location = faction.warp(name);
-        return location == null ? null : location.getLocation();
+        return location == null ? null : location.asLocation();
     }
 
     /**

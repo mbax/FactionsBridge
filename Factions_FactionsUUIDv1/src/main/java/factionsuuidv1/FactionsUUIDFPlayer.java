@@ -4,7 +4,6 @@ import cc.javajobs.factionsbridge.bridge.infrastructure.AbstractFPlayer;
 import cc.javajobs.factionsbridge.bridge.infrastructure.struct.Faction;
 import cc.javajobs.factionsbridge.bridge.infrastructure.struct.Role;
 import dev.kitteh.factions.FPlayer;
-import org.bukkit.Bukkit;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
